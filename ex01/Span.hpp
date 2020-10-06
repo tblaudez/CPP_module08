@@ -6,14 +6,13 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 10:15:21 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/10/06 11:01:16 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/06 11:21:22 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 
-#include <iostream>
 #include <vector>
 #include <iterator>
 
@@ -26,8 +25,6 @@ public:
 	Span(Span const& src);
 	Span& operator=(Span const& rhs);
 	~Span();
-
-	int		getMaxSize() const;
 
 	void	addNumer(int number);
 	template <typename T>
@@ -45,5 +42,3 @@ private:
 	std::vector<int>	_sorted_array;
 
 };
-
-std::ostream&	operator<<(std::ostream& o, Span const& i);

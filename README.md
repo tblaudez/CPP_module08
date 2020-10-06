@@ -1,3 +1,3 @@
 # CPP_module07
 
-C++ Templates
+C++ Templated containers, iterators, algorithms

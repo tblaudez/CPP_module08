@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 10:17:59 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/10/06 11:01:25 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/06 11:21:19 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,6 @@ Span::~Span() {
 }
 
 
-std::ostream&	operator<<(std::ostream& o, Span const& i) {
-
-	o << "Span: maxSize=" << i.getMaxSize();
-	return o;
-}
-
-
 void	Span::addNumer(int number) {
 
 	if (this->_array.size() == this->_array.capacity()) {
@@ -79,10 +72,4 @@ int		Span::longestSpan() const {
 	}
 
 	return this->_sorted_array.back() - this->_sorted_array.front();
-}
-
-
-int		Span::getMaxSize() const {
-
-	return this->_array.capacity();
 }
