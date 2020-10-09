@@ -6,23 +6,23 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 10:17:59 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/10/06 11:21:19 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 17:25:00 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
 
-#include <stdexcept>
+#include <stdexcept> // runtime_error
 
 
-Span::Span(unsigned int maxSize) {
+Span::Span(unsigned int maxSize) : std::vector<int>() {
 
-	this->_array.reserve(maxSize);
+	this->reserve(maxSize);
 }
 
 
-Span::Span(Span const& src) {
+Span::Span(Span const& src) : std::vector<int>(src) {
 
 	*this = src;
 }
@@ -31,7 +31,7 @@ Span::Span(Span const& src) {
 Span&	Span::operator=(Span const& rhs) {
 
 	if (this != &rhs) {
-		this->_array = rhs._array;
+		std::vector<int>::operator=(rhs);
 	}
 
 	return *this;
@@ -45,31 +45,34 @@ Span::~Span() {
 
 void	Span::addNumer(int number) {
 
-	if (this->_array.size() == this->_array.capacity()) {
+	if (this->size() == this->capacity()) {
 		throw std::runtime_error("Span max size exceeded");
 	}
 
-	this->_array.push_back(number);
-
-	this->_sorted_array.push_back(number);
-	std::sort(this->_sorted_array.begin(), this->_sorted_array.end());
+	this->push_back(number);
 }
 
 int		Span::shortestSpan() const {
 
-	if (this->_array.empty() || this->_array.size() == 1) {
+	if (this->empty() || this->size() == 1) {
 		throw std::runtime_error("Span is empty or has only one number");
 	}
 
-	return this->_sorted_array[1] - this->_sorted_array[0];
+	std::vector<int> sorted = std::vector<int>(*this);
+	std::sort(sorted.begin(), sorted.end());
+
+	return sorted[1] - sorted[0];
 }
 
 
 int		Span::longestSpan() const {
 
-	if (this->_array.empty() || this->_array.size() == 1) {
+	if (this->empty() || this->size() == 1) {
 		throw std::runtime_error("Span is empty or has only one number");
 	}
 
-	return this->_sorted_array.back() - this->_sorted_array.front();
+	std::vector<int> sorted = std::vector<int>(*this);
+	std::sort(sorted.begin(), sorted.end());
+
+	return sorted.back() - sorted.front();
 }

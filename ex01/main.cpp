@@ -6,31 +6,42 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 10:54:53 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/10/06 11:15:56 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/10/09 17:32:33 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
+#include <cstdlib> // srand, rand
+#include <ctime> // time
+#include <iostream> // cout, cerr
+
+int myRand() {
+
+	return rand() % 5000;
+}
+
 
 int	main(void) {
 
-	std::srand(std::time(0));
+	srand(time(0));
 
-	Span				span(15000);
-	std::vector<int>	v(15000);
+	Span span(2000);
+
+	span.addNumer(24);
+	span.addNumer(47);
+	span.addNumer(79);
+	span.addNumer(35);
+	span.addNumer(22);
+	span.addNumer(54);
+
+	std::vector<int> v(1000);
+	std::generate(v.begin(), v.end(), myRand);
+
+	span.addNumer(v.begin(), v.end());
 
 
-	// std::generate(v.begin(), v.end(), std::rand);
-	// span.addNumer(v.begin(), v.end());
-
-	// span.addNumer(5);
-	// span.addNumer(2);
-	// span.addNumer(7);
-	// span.addNumer(35);
-	// span.addNumer(22);
-	// span.addNumer(54);
-
+	std::cout << span.size() << " / " << span.capacity() << std::endl;
 
 	try
 	{
@@ -40,7 +51,6 @@ int	main(void) {
 	catch(std::runtime_error& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
-
 
 
 	return 0;
