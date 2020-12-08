@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 10:54:53 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/12/08 11:38:13 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/12/08 17:03:36 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	main(void) {
 
-	Span				span(20000);
+	Span				span(10000);
 
 	// Error, No value in Span
 	try
@@ -30,7 +30,7 @@ int	main(void) {
 
 	// Error, Fill Span with random values and overflow by 1
 	try {
-		std::vector<int>	v(20001);
+		std::vector<int>	v(10001);
 		std::generate(v.begin(), v.end(), arc4random);
 		span.addNumer(v.begin(), v.end());
 	}

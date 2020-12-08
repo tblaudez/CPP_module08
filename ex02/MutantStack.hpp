@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 11:20:49 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/12/08 11:42:43 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/12/08 16:58:34 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class MutantStack : public std::stack<T, Container> {
 
 public:
 
-	MutantStack() {}
+	MutantStack() : std::stack<T, Container>() {}
 
 	MutantStack(MutantStack const& src) : std::stack<T, Container>(src) {}
 
@@ -34,7 +34,7 @@ public:
 		return *this;
 	}
 
-	~MutantStack() {}
+	virtual ~MutantStack() {}
 
 	typedef typename std::stack<T, Container>::container_type	container_type;
 	typedef typename container_type::iterator					iterator;
