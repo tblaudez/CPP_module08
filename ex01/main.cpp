@@ -6,47 +6,45 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 10:54:53 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/10/09 17:32:33 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/12/08 11:38:13 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-#include <cstdlib> // srand, rand
-#include <ctime> // time
+#include <cstdlib> // arc4random
 #include <iostream> // cout, cerr
-
-int myRand() {
-
-	return rand() % 5000;
-}
-
 
 int	main(void) {
 
-	srand(time(0));
+	Span				span(20000);
 
-	Span span(2000);
+	// Error, No value in Span
+	try
+	{
+		span.shortestSpan();
+	}
+	catch(std::runtime_error& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
 
-	span.addNumer(24);
-	span.addNumer(47);
-	span.addNumer(79);
-	span.addNumer(35);
-	span.addNumer(22);
-	span.addNumer(54);
-
-	std::vector<int> v(1000);
-	std::generate(v.begin(), v.end(), myRand);
-
-	span.addNumer(v.begin(), v.end());
+	// Error, Fill Span with random values and overflow by 1
+	try {
+		std::vector<int>	v(20001);
+		std::generate(v.begin(), v.end(), arc4random);
+		span.addNumer(v.begin(), v.end());
+	}
+	catch(std::runtime_error& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
 
 
-	std::cout << span.size() << " / " << span.capacity() << std::endl;
+	std::cout << "Span Size : " << span.size() << "/" << span.capacity() << std::endl;
 
 	try
 	{
-		std::cout << span.shortestSpan() << std::endl;
-		std::cout << span.longestSpan() << std::endl;
+		std::cout << "Minimum span: " << span.shortestSpan() << std::endl;
+		std::cout << "Maximum span: " << span.longestSpan() << std::endl;
 	}
 	catch(std::runtime_error& e) {
 		std::cerr << "Error: " << e.what() << std::endl;

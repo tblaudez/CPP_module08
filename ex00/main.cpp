@@ -6,24 +6,28 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/05 14:28:15 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/10/09 17:33:05 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/12/08 10:30:52 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
 
 #include <vector> // duh..
+#include <list> // duh..
 #include <iostream> // cout, cerr
 
 
 int	main(void) {
 
-	// Replace vector by "list" or "deque", it works the same
 	std::vector<int>			intList;
 	std::vector<int>::iterator	it;
 
+	// std::list<int>				intList;
+	// std::list<int>::iterator	it;
+
+
 	for (int i=0; i<10; i++) {
-		intList.push_back(5 * i);
+		intList.push_back(i * 5);
 	}
 
 	it = easyfind(intList, 25);

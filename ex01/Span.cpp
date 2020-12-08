@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 10:17:59 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/10/09 17:25:00 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/12/08 11:50:53 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,15 @@ void	Span::addNumer(int number) {
 	this->push_back(number);
 }
 
-int		Span::shortestSpan() const {
+
+void	Span::addNumer(std::vector<int>::iterator first, std::vector<int>::iterator last) {
+	while (first != last) {
+		this->addNumer(*first++);
+	}
+}
+
+
+unsigned int		Span::shortestSpan() const {
 
 	if (this->empty() || this->size() == 1) {
 		throw std::runtime_error("Span is empty or has only one number");
@@ -64,8 +72,7 @@ int		Span::shortestSpan() const {
 	return sorted[1] - sorted[0];
 }
 
-
-int		Span::longestSpan() const {
+unsigned int		Span::longestSpan() const {
 
 	if (this->empty() || this->size() == 1) {
 		throw std::runtime_error("Span is empty or has only one number");
