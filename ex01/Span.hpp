@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/06 10:15:21 by tblaudez      #+#    #+#                 */
-/*   Updated: 2020/12/08 11:33:46 by tblaudez      ########   odam.nl         */
+/*   Updated: 2020/12/11 13:19:17 by tblaudez      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
 	Span(unsigned int maxSize=0);
 	Span(Span const& src);
 	Span& operator=(Span const& rhs);
-	~Span();
+	virtual ~Span();
 
 	void			addNumer(int number);
 	void			addNumer(std::vector<int>::iterator first, std::vector<int>::iterator last);
